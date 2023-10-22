@@ -1,23 +1,4 @@
-import datos as da
 import funciones as fun
-
-class usuario:
-    def __init__(self,nombre,apellido,email,contraseña):
-        self.nombre = nombre
-        self.apellido = apellido
-        self.email = email
-        self.contraseña = contraseña
-
-
-
-usuario1 = usuario(da.alumnos["nombrea"],da.alumnos["apellidoa"],da.alumnos["gmaila"],da.alumnos["contraa"])
-
-
-for tnombre in da.alumnos["nombrea"]:
-    print(tnombre)
-
-print(usuario1.nombre[0])    
-
 
 op1=1
 

@@ -1,19 +1,31 @@
-import datos as da
+class Alumno:
+    def __init__(self, nombre, apellido, email, contraseña):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.email = email
+        self.contraseña = contraseña
 
+alumnos_datos = [
+    Alumno("Pepe", "Martinez", "pmarto@gmail.com", "pemart"),
+    Alumno("Jose", "Leonidas", "joseleo@gmail.com", "jose123"),
+    Alumno("Norman", "Aurelio", "anorman@gmail.com", "anorman"),
+]
 
 def alumnos():
     email = input("Ingrese su correo electrónico: ")
-    password = input("Ingrese su contraseña: ")
+    contraseña = input("Ingrese su contraseña: ")
 
-    if email in da.alumnos["gmaila"]:
-        index = da.alumnos["gmaila"].index(email)
-        if da.alumnos["contraa"][index] == password:
-            print(f"Bienvenido, {da.alumnos['nombrea'][index]} {da.alumnos['apellidoa'][index]}")
-            menualumnos()
-        else:
-            print("Error: La contraseña ingresada es incorrecta.")
+    alumno_encontrado = None
+    for alumno in alumnos_datos:
+        if alumno.email == email and alumno.contraseña == contraseña:
+            alumno_encontrado = alumno
+            break
+
+    if alumno_encontrado != None:
+        print(f"Bienvenido, {alumno_encontrado.nombre} {alumno_encontrado.apellido}")
+        menualumnos()
     else:
-        print("El correo electrónico no está registrado. Debe darse de alta en alumnado.")
+        print("El correo o la contraseña son incorrectos.Porfavor hable con alumnado, gracias")
 
 
 def menualumnos():

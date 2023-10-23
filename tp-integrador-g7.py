@@ -1,3 +1,5 @@
+import random
+import string
 class Usuario:
     def __init__(self, nombre, apellido, email, contraseña):
         self.nombre = nombre
@@ -44,11 +46,30 @@ class Alumno(Usuario):
                 print(f"{i}. {curso.nombre}")
 
 class Profesor(Usuario):
-    def __init__(self, nombre, apellido, email, contraseña, titulo,anio_recibido):
+    def __init__(self, nombre, apellido, email, contraseña, titulo, anio_recibido):
         super().__init__(nombre, apellido, email, contraseña)
         self.titulo = titulo
         self.anio_recibido = anio_recibido
+        self.mis_cursos = []
 
+    def dictar_curso(self):
+        nombre_curso = input("Ingrese el nombre del curso a dictar: ")
+        contrasena_matriculacion = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(5))
+
+        nuevo_curso = Curso(nombre_curso, contrasena_matriculacion)
+        self.mis_cursos.append(nuevo_curso)
+        cursos_disponibles.append(nuevo_curso)
+        print("Curso dado de alta con éxito.")
+        print(f"Nombre: {nuevo_curso.nombre}")
+        print(f"Contraseña: {nuevo_curso.contrasena}")
+
+    def ver_cursos(self):
+        if not self.mis_cursos:
+            print("No tienes cursos dictados.")
+        else:
+            print("Cursos que dictas:")
+            for i, curso in enumerate(self.mis_cursos, start=1):
+                print(f"{i} {curso.nombre}")
 class Curso:
     def __init__(self, nombre, contrasena):
         self.nombre = nombre
@@ -60,8 +81,10 @@ alumnos_datos = [
     Alumno("Jose", "Leonidas", "joseleo@gmail.com", "jose123", "54321", 2021),
 ]
 
-profesor_datos=[
-    Profesor("", "")
+profesor_datos = [
+    Profesor("Martin", "Lopez", "martin@g.com", "martin123", "Doctor", 2005),
+    Profesor("Mariela", "Viloni", "mariela@g.com", "mar123", "Ingeniera", 2002),
+    Profesor("Augusto", "Sánchez", "augus@g.com", "augus123", "Licenciado", 2004),
 
 ]
 
@@ -114,6 +137,33 @@ while op1 == 1:
         pass
     elif op2 == 2:
         # Código para ingresar como profesor
+        email = input("Ingrese su correo electrónico: ")
+        contraseña = input("Ingrese su contraseña: ")
+        
+        Profesor_encontrado = None
+        for profesor in profesor_datos:
+            if profesor.email == email and profesor.contraseña == contraseña:
+                profesor_encontrado = profesor
+                break
+
+        if profesor_encontrado:
+            print(f"Bienvenido, {profesor_encontrado.nombre}")
+            while True:
+                print("Sub Menú Profesor")
+                print("1. Dictar curso")
+                print("2. Ver cursos")
+                print("3. Volver al menú principal")
+                
+                opcion_profesor = input("Elija una opción: ")
+
+                if opcion_profesor == "1":
+                    profesor_encontrado.dictar_curso()
+                elif opcion_profesor == "2":
+                    profesor_encontrado.ver_cursos()
+                elif opcion_profesor == "3":
+                    break
+        else:
+            print("El correo o la contraseña son incorrectos. Por favor hable con alumnado, gracias")
         pass
     elif op2 == 3:
         print("Cursos disponibles:")

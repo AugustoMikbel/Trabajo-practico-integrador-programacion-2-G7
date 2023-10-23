@@ -43,6 +43,12 @@ class Alumno(Usuario):
             for i, curso in enumerate(self.mi_cursos, start=1):
                 print(f"{i}. {curso.nombre}")
 
+class Profesor(Usuario):
+    def __init__(self, nombre, apellido, email, contraseña, titulo,anio_recibido):
+        super().__init__(nombre, apellido, email, contraseña)
+        self.titulo = titulo
+        self.anio_recibido = anio_recibido
+
 class Curso:
     def __init__(self, nombre, contrasena):
         self.nombre = nombre
@@ -54,9 +60,15 @@ alumnos_datos = [
     Alumno("Jose", "Leonidas", "joseleo@gmail.com", "jose123", "54321", 2021),
 ]
 
+profesor_datos=[
+    Profesor("", "")
+
+]
+
 cursos_disponibles = [
     Curso("Programación I", "123456"),
-    Curso("Matemáticas Avanzadas", "789012"),
+    Curso("Estadisitica", "789012"),
+    Curso("Laboratorio","334455")
 ]
 op1 = 1
 

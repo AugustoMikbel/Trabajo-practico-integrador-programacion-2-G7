@@ -104,11 +104,13 @@ while op1 == 1:
         # Código para ingresar como profesor
         pass
     elif op2 == 3:
-        # Código para ver cursos
-        pass
+        print("Cursos disponibles:")
+        for i, curso in enumerate(cursos_disponibles, start=1):
+            print(f"{i}. {curso.nombre}")
+            pass
     elif op2 == 4:
         print("Hasta luego")
-        op1 = 0
+        op1 = 4
     else:
         print("Opción no válida. Por favor, elija una opción válida.")
 

@@ -75,6 +75,8 @@ class Curso:
         self.nombre = nombre
         self.contrasena = contrasena
 
+class Archivo:
+
 # Inicialización de datos
 alumnos_datos = [
     Alumno("Pepe", "Martinez", "pmarto@gmail.com", "pemart", "12345", 2020),

@@ -150,11 +150,17 @@ class Curso:
     def agregar_archivo(self, archivo):
         self.mi_archivo.append(archivo) 
 
+class Carrera(Curso):
+    def __init__(self, codigo, nombre, nombre_carrera):
+        super().__init__(codigo, nombre)
+        self.nombre_carrera = nombre_carrera
+
 class Archivo:
     def  __init__(self, nombre,dato,formato):
         self.nombre = nombre
         self.dato = dato
         self.formato = formato
+
 
 
 
@@ -260,10 +266,12 @@ while op1 == 1:
             print("El correo o la contraseña son incorrectos. Por favor hable con alumnado, gracias")
         pass
     elif op2 == 3:
+       
+        cursos_disponibles_sorted = sorted(cursos_disponibles, key=lambda x: x.nombre)
         print("Cursos disponibles:")
-        for i, curso in enumerate(cursos_disponibles, start=1):
+        for i, curso in enumerate(cursos_disponibles_sorted, start=1):
             print(f"{i}. {curso.nombre}")
-            pass
+            
     elif op2 == 4:
         print("Hasta luego")
         op1 = 4
@@ -271,3 +279,5 @@ while op1 == 1:
         print("Opción no válida. Por favor, elija una opción válida.")
 
     op1 = int(input("Ingrese 1 si quiere continuar: "))
+
+    
